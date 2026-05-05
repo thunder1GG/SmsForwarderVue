@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, reactive, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue';
 import {
   Battery,
   BookUser,
@@ -206,11 +206,31 @@ function buildData(action) {
   return action.data || {};
 }
 
-function openAction(action) {
+function hasAutoSubmitData(action) {
+  if (action.key === 'smsSend') {
+    return Boolean(forms.smsSend.phone_numbers && forms.smsSend.msg_content);
+  }
+  if (action.key === 'contactAdd') {
+    return Boolean(forms.contactAdd.name && forms.contactAdd.phone_number);
+  }
+  if (action.key === 'wol') {
+    return Boolean(forms.wol.mac);
+  }
+  if (action.key === 'clonePush') {
+    return Boolean(forms.clonePush.json.trim());
+  }
+  return true;
+}
+
+async function openAction(action) {
   if (!action) return;
   activeKey.value = action.key;
   result.value = null;
   view.value = 'action';
+  await nextTick();
+  if (activeKey.value === action.key && hasAutoSubmitData(action)) {
+    submitAction().catch(() => {});
+  }
 }
 
 function backHome() {
