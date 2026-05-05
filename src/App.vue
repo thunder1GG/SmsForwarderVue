@@ -22,7 +22,7 @@ import { SECURITY_MODES, callSmsForwarder } from './lib/api';
 const storageKey = 'sms-forwarder-vue-settings';
 const savedSettings = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
-const settings = reactive({
+let settings = reactive({
   baseUrl: savedSettings.baseUrl || 'http://127.0.0.1:5000',
   securityMode: savedSettings.securityMode || SECURITY_MODES.NONE,
   secret: savedSettings.secret || '',
@@ -35,7 +35,7 @@ const result = ref(null);
 const serverConfig = ref(null);
 const connectionChecked = ref(false);
 
-const forms = reactive({
+let forms = reactive({
   smsSend: {
     sim_slot: 1,
     phone_numbers: '',
