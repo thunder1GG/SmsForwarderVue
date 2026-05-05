@@ -284,14 +284,15 @@ onMounted(() => {
 
     <ConnectionCard v-model:settings="settings" />
 
-    <HomeGrid
-      v-if="view === 'home'"
-      :actions="actions"
-      :server-config="serverConfig"
-      @open="openAction"
-    />
+    <template v-if="view === 'home'">
+      <HomeGrid
+        :actions="actions"
+        :server-config="serverConfig"
+        @open="openAction"
+      />
 
-    <ResultRenderer v-if="view === 'home' && result" :result="result" />
+      <ResultRenderer v-if="result" :result="result" />
+    </template>
 
     <OperationPage
       v-else-if="activeAction"
@@ -304,12 +305,5 @@ onMounted(() => {
     >
       <ResultRenderer v-if="result" :result="result" />
     </OperationPage>
-
-    <HomeGrid
-      v-else
-      :actions="actions"
-      :server-config="serverConfig"
-      @open="openAction"
-    />
   </main>
 </template>

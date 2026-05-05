@@ -50,7 +50,6 @@ function apiEnabled(action, config) {
           <component :is="action.icon" :size="24" />
         </span>
         <span class="tile-label">{{ action.label }}</span>
-        <span class="tile-path">{{ action.path }}</span>
       </button>
     </div>
   </section>

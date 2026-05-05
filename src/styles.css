@@ -212,23 +212,23 @@ button:disabled {
 
 .action-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .action-tile {
   display: grid;
-  grid-template-rows: auto auto auto;
-  align-content: space-between;
-  gap: 8px;
-  min-height: 128px;
+  align-content: center;
+  justify-items: center;
+  gap: 9px;
+  min-height: 104px;
   min-width: 0;
   color: #172026;
   background: #ffffff;
   border: 1px solid #dbe4e2;
   border-radius: 8px;
-  padding: 13px;
-  text-align: left;
+  padding: 10px 6px;
+  text-align: center;
   box-shadow: 0 8px 24px rgba(34, 60, 65, 0.07);
   cursor: pointer;
 }
@@ -248,18 +248,11 @@ button:disabled {
 
 .tile-label {
   display: block;
-  font-size: 17px;
+  width: 100%;
+  overflow-wrap: anywhere;
+  font-size: 14px;
   font-weight: 800;
-  line-height: 1.2;
-}
-
-.tile-path {
-  display: block;
-  overflow: hidden;
-  color: #68777b;
-  font-size: 12px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.25;
 }
 
 .tone-teal .tile-icon { background: #0d5c63; }
